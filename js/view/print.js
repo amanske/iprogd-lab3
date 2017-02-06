@@ -7,8 +7,12 @@ var Print = function (container, model){
 	model.setNumberOfGuests(5);
 	///////////////////////////////
 
+	model.addObserver(this);
 	var guests = model.getNumberOfGuests();
 	populatePrintView(model, guests);
+
+	this.update = function (obj) {
+	}
 
 }
 

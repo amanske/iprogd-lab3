@@ -1,5 +1,6 @@
 var SelectDish = function (container, dinnermodel) {
 
+    dinnermodel.addObserver(this);
     //WHOLE VIEW CONTAINER
     var viewContainer = document.createElement("div");
     viewContainer.className += " container";
@@ -146,7 +147,8 @@ var SelectDish = function (container, dinnermodel) {
         foodContainer.append(foodDescription);
     }
 
-
+    this.update = function (obj) {
+    }
 
 
 

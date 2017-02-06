@@ -4,8 +4,23 @@ var DinnerModel = function() {
     var numberOfGuests;
     var selectedDishes = []; //dishes on the menu
 
+    var observers = [];
+
+    //add an observer to the obsever array
+    this.addObserver = function(observer){
+    	observers.push(observer);
+    }
+
+    //call the update method on all of the observers
+    var notifyObservers = function (obj) {
+    	for(var i = 0; i < observers.length; i++){
+    		observers[i].update(obj);
+    	}
+    }
+
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
+		notifyObservers();
 	}
 
 	// should return
@@ -61,6 +76,7 @@ var DinnerModel = function() {
         }
 
         selectedDishes.push(dishToAdd);
+        notifyObservers();
 	}
 
 	//Removes dish from menu
@@ -70,6 +86,7 @@ var DinnerModel = function() {
               selectedDishes.splice(i, 1);
           }
         }
+        notifyObservers();
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")

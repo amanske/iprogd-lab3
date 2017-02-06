@@ -18,6 +18,10 @@ $(function() {
     if ($("#selectDish").length){ //if div exists
         var selectDish = new SelectDish($("#selectDish"), model);
     }
-    var sideBar = new SideBar($("#sideBarDiv"));
+    
+    if ($("#sideBarDiv").length){ //if div exists
+        var sideBar = new SideBar($("#sideBarDiv"), model);
+    }
+    
 
 });

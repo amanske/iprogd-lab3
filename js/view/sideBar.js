@@ -1,4 +1,10 @@
-var SideBar = function (container) {
+var SideBar = function (container,model) {
+
+
+    model.addObserver(this);  
+    this.update = function (obj) {
+    }  
+    model.setNumberOfGuests(2);
 
     var sideBar = document.createElement("div");
     sideBar.className += " nav nav-pills nav-stacked";
@@ -24,7 +30,7 @@ var SideBar = function (container) {
     numberOfGuests.append(people);
 
     
-    var value = 1; //TODO: fetch value from dinnerModel.js
+    var value = model.getNumberOfGuests();
 
     var textbox = document.createElement("input");
     textbox.id = "textbox";
@@ -41,13 +47,19 @@ var SideBar = function (container) {
     var buttonUp = document.createElement("button");
     buttonUp.className += " glyphicon glyphicon-chevron-up";
     buttonUp.setAttribute("type", "button");
-    buttonUp.setAttribute("onclick", "incrementValue()");
+    //buttonUp.setAttribute("onclick", "incrementValue()");
+    buttonUp.onclick = function(e){
+        incrementValue(model);
+    }
     incrementor.append(buttonUp);
 
     var buttonDown = document.createElement("button");
     buttonDown.className += " glyphicon glyphicon-chevron-down";
     buttonDown.setAttribute("type", "button");
-    buttonDown.setAttribute("onclick", "decrementValue()");
+    //buttonDown.setAttribute("onclick", "decrementValue()");
+    buttonDown.onclick = function(e){
+        decrementValue(model);
+    }
     incrementor.append(buttonDown);
 
     var dishName = document.createElement("div");
@@ -99,19 +111,28 @@ var SideBar = function (container) {
     confButton.innerHTML = "Confirm Dinner";
     confirmButton.append(confButton);
 
+    
+
 }
 
-function incrementValue()
+function incrementValue(model)
 {
+    var guests = model.getNumberOfGuests();
+    model.setNumberOfGuests(guests + 1);
     var value = parseInt(document.getElementById('textbox').value, 10);
     value++;
     document.getElementById('textbox').value = value;
+
 }
 
-function decrementValue()
+function decrementValue(model)
 {
-    var value = parseInt(document.getElementById('textbox').value, 10);
-    value--;
-    if(value == 0) value = 1;
-    document.getElementById('textbox').value = value;
+    var guests = model.getNumberOfGuests();
+    console.log(guests);
+    if(guests > 1){
+        model.setNumberOfGuests(guests - 1);
+        var value = parseInt(document.getElementById('textbox').value, 10);
+        value--;
+        document.getElementById('textbox').value = value;
+    }
 }

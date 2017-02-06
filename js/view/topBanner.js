@@ -27,3 +27,5 @@ var TopBanner = function (container) {
 function setStartScreen(){
     $("#mainStart").show();
 }
+
+ 
