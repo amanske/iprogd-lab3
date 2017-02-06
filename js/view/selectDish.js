@@ -15,20 +15,6 @@ var SelectDish = function (container, dinnermodel) {
     viewContainer.append(dishSelectBar);
 
 
-
-
-    
-    //////////////MANSKE
-    var colSideBar = document.createElement("div");
-    colSideBar.className += "col-md-2";
-
-    var sideBar = document.createElement("div");
-    sideBar.id = "sideBarDiv";
-
-    colSideBar.append(sideBar);
-    dishSelectBar.append(colSideBar);
-    ///////////////////MANSKE
-
     //TITLE
 
     var col1 = document.createElement("div");
@@ -42,10 +28,6 @@ var SelectDish = function (container, dinnermodel) {
 
     //SEPERATION LINE
     dishSelectBar.append(document.createElement("hr"));
-
-    var col2 = document.createElement("div");
-    col2.className += "col-md-2";
-    dishSelectBar.append(col2);
 
     //SEARCH BAR (container)
     var searchContainer = document.createElement("div");
@@ -106,7 +88,6 @@ var SelectDish = function (container, dinnermodel) {
     var foodList = document.createElement("div");
     foodList.className += "row";
     foodList.id = "foodList";
-    foodList.innerHTML = '<div class="col-md-2"></div>';
     viewContainer.append(foodList);
 
 

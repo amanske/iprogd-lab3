@@ -71,13 +71,11 @@ var SideBar = function (container,model) {
 
     var dishText = document.createElement("p");
     dishText.style.float = "left";
-    dishText.style.padding = "10px";
     dishText.innerHTML = "Dish Name";
     dishName.append(dishText);
 
     var dishCost = document.createElement("p");
     dishCost.style.float = "right";
-    dishCost.style.padding = "10px";
     dishCost.innerHTML = "Cost";
     dishName.append(dishCost);
 
