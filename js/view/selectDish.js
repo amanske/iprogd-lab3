@@ -17,39 +17,52 @@ var SelectDish = function (container, dinnermodel) {
 
     //TITLE
 
-    var col1 = document.createElement("div");
-    col1.className += "col-md-10";
-    col1.style.paddingLeft = "50px";
+    var dishTitleRow = document.createElement("div");
+    dishTitleRow.className += "row";
+    dishTitleRow.style.paddingLeft = "50px";
 
     var selectDishTitle = document.createElement("h3");
     selectDishTitle.innerHTML = "SELECT DISH";
-    col1.append(selectDishTitle);
-    dishSelectBar.append(col1);
+    dishTitleRow.append(selectDishTitle);
+    dishSelectBar.append(dishTitleRow);
 
     //SEPERATION LINE
-    dishSelectBar.append(document.createElement("hr"));
+    var godamnLine = document.createElement("div");
+    godamnLine.className += " row";
+    godamnLine.innerHTML = '<hr style="margin:10px;margin-left:50px;">';
+    dishSelectBar.append(godamnLine);
 
     //SEARCH BAR (container)
     var searchContainer = document.createElement("div");
-    searchContainer.className += "col col-md-3";
+    searchContainer.className += "row";
     searchContainer.style.paddingLeft = "50px";
     dishSelectBar.append(searchContainer);
+
+    var searchFormContainer = document.createElement("div");
+    searchFormContainer.style.padding = "0px";
+    searchFormContainer.className += " col-md-3";
+    searchContainer.append(searchFormContainer);
 
     var searchForm = document.createElement("input");
     searchForm.setAttribute("type", "text");
     searchForm.className += " form-control";
     searchForm.placeholder = "Enter key words";
     searchForm.id = "selectedDishSearch";
-    searchContainer.append(searchForm);
+    searchFormContainer.append(searchForm);
 
     //SEARCH BUTTON 
+
+    var searchButtonContainer = document.createElement("div");
+    searchButtonContainer.style.padding = "0px";
+    searchButtonContainer.className += " col-md-2";
+    searchContainer.append(searchButtonContainer);
 
     var searchButton = document.createElement("button");
     searchButton.innerHTML = "SEARCH";
     searchButton.setAttribute("type", "button");
     searchButton.className += " btn button-default";
     searchButton.id = "selectedDishSearchButton";
-    searchContainer.append(searchButton);
+    searchButtonContainer.append(searchButton);
 
     
 
@@ -57,8 +70,8 @@ var SelectDish = function (container, dinnermodel) {
     //COURSE MENU (container)
     var courseMenu = document.createElement("div");
     courseMenu.style.display = "inline-block";
-    courseMenu.className += "col col-md-3";
-    dishSelectBar.append(courseMenu);
+    courseMenu.className += "col-md-3";
+    searchContainer.append(courseMenu);
 
     // course form
     var courseForm = document.createElement("div");
