@@ -20,9 +20,11 @@ function populatePrintView(model, guests){
 	var menu = model.getFullMenu();
 	var container = document.getElementById("print_page");
 	//Add banner to container element
-	container.innerHTML = '<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4"> <button class="btn-default" type="button"> Go back and edit dinner </button> </div> </div> </div>';
+	container.innerHTML = '<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4"> <button class="btn-default" type="button" id="goBackAndEditFromPrint"> Go back and edit dinner </button> </div> </div> </div>';
 
 
+    var button = document.getElementById("goBackAndEditFromPrint");
+    button.onclick = backToSelectDish2;
 	for(var i = 0; i < menu.length; i++){
 
 		//Add a new row for each new dish
@@ -54,3 +56,9 @@ function populatePrintView(model, guests){
 	}
 
 }
+function backToSelectDish2(){
+    $('#print_page').hide();
+    $('#sideBarDiv').show();
+    $('#selectDish').show();
+}
+

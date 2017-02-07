@@ -33,4 +33,7 @@ var StartMessage = function (container) {
 
 function startDinnerPlanner(){
     $('#mainStart').hide();
+    $('body').css('background-image', 'none');
+    $('#sideBarDiv').show();
+    $('#selectDish').show();
 }

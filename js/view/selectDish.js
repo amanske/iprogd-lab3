@@ -85,7 +85,7 @@ var SelectDish = function (container, dinnermodel) {
 
     var option = document.createElement("option");
     option.innerHTML = "starter";
-    option.setAttribute("value", "main dish");
+    option.setAttribute("value", "starter");
     courseSelector.append(option);
     var option2 = document.createElement("option");
     option2.innerHTML = "main dish";
@@ -104,14 +104,27 @@ var SelectDish = function (container, dinnermodel) {
     viewContainer.append(foodList);
 
 
-    var menu = dinnermodel.getAllDishes(courseSelector.value);
-    console.log(menu.length);
-    console.log(courseSelector.value);
+    //SEARCHBUTTONS ONCLICK
+    searchButton.onclick = function(e){
+        searchFood(dinnermodel);
+    }
+    searchButton.click();
 
+    this.update = function (obj) {
+    }
+
+}
+
+function searchFood(model){
+    console.log("CLICKED");
+    document.getElementById("foodList").innerHTML = '';
+    var filter = document.getElementById("selectedDishSearch").value;
+    var type = document.getElementById("chosenCourse").value;
+    var dishesToShow = model.getAllDishes(type,filter);
 
     var counter = 0;
-    for(var i = 0; i < menu.length; i++){
-        var dish = menu[i];
+    for(var i = 0; i < dishesToShow.length; i++){
+        var dish = dishesToShow[i];
 
         //FOOD CONTAINER 1
         var foodContainer = document.createElement("div");
@@ -140,11 +153,5 @@ var SelectDish = function (container, dinnermodel) {
         foodDescription.innerHTML = dish.description;
         foodContainer.append(foodDescription);
     }
-
-    this.update = function (obj) {
-    }
-
-
-
 }
 

@@ -113,8 +113,18 @@ var SideBar = function (container,model) {
     confButton.innerHTML = "Confirm Dinner";
     confirmButton.append(confButton);
 
+    confButton.onclick = confirmDinner;
+
     
 
+}
+
+function confirmDinner(){
+
+    $('#sideBarDiv').hide();
+    $('#selectDish').hide();
+    $('#page3').hide();
+    $('#overview_page').show();
 }
 
 function incrementValue(model)
