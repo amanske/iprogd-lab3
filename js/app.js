@@ -22,6 +22,11 @@ $(function() {
     if ($("#sideBarDiv").length){ //if div exists
         var sideBar = new SideBar($("#sideBarDiv"), model);
     }
-    
+    $('#selectDish').hide();
+    $('#page3').hide();
+    $('#overview_page').hide();
+    $('#print_page').hide();
+    $('#sideBarDiv').hide();
+   
 
 });
