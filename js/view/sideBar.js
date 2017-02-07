@@ -153,6 +153,9 @@ var SideBar = function (container,model) {
 
 	    confButton.onclick = confirmDinner;
 	}
+
+	rePopSideBar();
+
 }
 
 
