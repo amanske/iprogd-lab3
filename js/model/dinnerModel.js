@@ -4,6 +4,11 @@ var DinnerModel = function() {
     var numberOfGuests;
     var selectedDishes = []; //dishes on the menu
 
+    var documentReadyForNotifies = false;
+    this.setDocReady = function(){
+        documentReadyForNotifies = true;
+    }
+
     var observers = [];
 
     //add an observer to the obsever array
@@ -11,10 +16,17 @@ var DinnerModel = function() {
     	observers.push(observer);
     }
 
+    this.setDishToShow = function(dishId){
+        var messengerObj = {dishId:dishId}
+        notifyObservers(messengerObj);
+    }
+
     //call the update method on all of the observers
     var notifyObservers = function (obj) {
     	for(var i = 0; i < observers.length; i++){
-    		observers[i].update(obj);
+            if(documentReadyForNotifies){
+                observers[i].update(obj);
+            }
     	}
     }
 
