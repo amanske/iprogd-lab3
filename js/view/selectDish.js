@@ -116,7 +116,6 @@ var SelectDish = function (container, dinnermodel) {
 }
 
 function searchFood(model){
-    console.log("CLICKED");
     document.getElementById("foodList").innerHTML = '';
     var filter = document.getElementById("selectedDishSearch").value;
     var type = document.getElementById("chosenCourse").value;
@@ -147,6 +146,11 @@ function searchFood(model){
         foodTitle.className += "btn button-default selectDishFoodTitle";
         foodTitle.innerHTML = dish.name;
         foodTitle.setAttribute("type", "button");
+        foodTitle.clickId = dish.id;
+        foodTitle.onclick = function(e){
+            model.setDishToShow(this.clickId);
+            showItemDescription();
+        }
 
         //FOOD DESCRIPTION 4 (text)
         var foodDescription = document.createElement("p");
@@ -155,3 +159,7 @@ function searchFood(model){
     }
 }
 
+function showItemDescription(){
+    $('#selectDish').hide();
+    $('#page3').show();
+}
