@@ -2,10 +2,20 @@ var SideBar = function (container,model) {
 
 
     model.addObserver(this);  
-    this.update = function (obj) {
-    }  
-    model.setNumberOfGuests(2);
+    var guests = 2; //Gonna use this as the default value for guests.
+    var totalPrice = 0;
+    var allMenuDishes = [];
+    var pendingDish;
 
+    model.setNumberOfGuests(guests); 
+
+    this.update = function (obj) {
+    	guests = model.getNumberOfGuests();
+    	totalPrice = model.getTotalMenuPrice();
+    	allMenuDishes = model.getFullMenu();
+    	//TODO: pendingDish = model.getDish(model.dishToShow());
+    }  
+    
     var sideBar = document.createElement("div");
     sideBar.className += " col-md-2 nav nav-pills nav-stacked";
     sideBar.id = "sidebar";
@@ -49,7 +59,6 @@ var SideBar = function (container,model) {
     var buttonUp = document.createElement("button");
     buttonUp.className += " glyphicon glyphicon-chevron-up";
     buttonUp.setAttribute("type", "button");
-    //buttonUp.setAttribute("onclick", "incrementValue()");
     buttonUp.onclick = function(e){
         incrementValue(model);
     }
@@ -58,7 +67,6 @@ var SideBar = function (container,model) {
     var buttonDown = document.createElement("button");
     buttonDown.className += " glyphicon glyphicon-chevron-down";
     buttonDown.setAttribute("type", "button");
-    //buttonDown.setAttribute("onclick", "decrementValue()");
     buttonDown.onclick = function(e){
         decrementValue(model);
     }
