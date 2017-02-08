@@ -143,134 +143,127 @@ var SideBar = function (container,model) {
 		dessert = model.getSelectedDish("dessert");
 		var dishToShow = model.getDish(model.getDishToShow());
 		if(!(typeof(dishToShow) == 'undefined')){
-    		totalPendingDishPrice = getTotalDishPrice(dishToShow, guests);
+			totalPendingDishPrice = getTotalDishPrice(dishToShow, guests);
 		}else{
 
 		}
-    	pendingSum.innerHTML = totalPendingDishPrice; 
+		pendingSum.innerHTML = totalPendingDishPrice; 
 		pendingSum1.innerHTML = 'SEK ' + (totalMenuPrice + totalPendingDishPrice);
-    	rePopSideBar(starter,main,dessert);
-    	if(!(typeof(obj) == 'undefined') && obj.dishId == -1){
-    		pendingSum.innerHTML = 0;
-    		totalPendingDishPrice = 0;
-    		pendingSum1.innerHTML = 'SEK ' + (totalMenuPrice + totalPendingDishPrice);
+		rePopSideBar(starter,main,dessert);
+		if(!(typeof(obj) == 'undefined') && obj.dishId == -1){
+			pendingSum.innerHTML = 0;
+			totalPendingDishPrice = 0;
+			pendingSum1.innerHTML = 'SEK ' + (totalMenuPrice + totalPendingDishPrice);
 
-    	}
+		}
 
-    } 
+	} 
     //model.setNumberOfGuests(guests); //invokes update
 
     function rePopSideBar (starter,main,dessert) {
     	if(!(typeof(starter) == 'undefined')){ 
     		dishRow1.innerHTML = '';
-	    	var addRemoveDiv = document.createElement("div");
-	    	addRemoveDiv.className = "col col-md-1";
-	    	dishRow1.append(addRemoveDiv);
+    		var addRemoveDiv = document.createElement("div");
+    		addRemoveDiv.className = "col col-md-1";
+    		dishRow1.append(addRemoveDiv);
 
-	    	var removeButton = document.createElement("button");
-	    	removeButton.type = "button";
-	    	removeButton.innerHTML = "x";
-	    	removeButton.id = "removeButton";
-	    	removeButton.onclick = function (e){
-	    		model.removeDishFromMenu(starter.id);
-	    		dishRow1.innerHTML = '';
-	    	}
+    		var removeButton = document.createElement("button");
+    		removeButton.type = "button";
+    		removeButton.innerHTML = "x";
+    		removeButton.id = "removeButton";
+    		removeButton.onclick = function (e){
+    			model.removeDishFromMenu(starter.id);
+    			dishRow1.innerHTML = '';
+    		}
 
-	    	addRemoveDiv.append(removeButton);
+    		addRemoveDiv.append(removeButton);
 
-	    	var addGuests = document.createElement("div");
-	    	addGuests.className = "col col-md-1";
-	    	addGuests.innerHTML = guests;
-	    	dishRow1.append(addGuests);
+    		var addGuests = document.createElement("div");
+    		addGuests.className = "col col-md-1";
+    		addGuests.innerHTML = guests;
+    		dishRow1.append(addGuests);
 
-	    	var addName = document.createElement("div");
-	    	addName.className = "col col-md-8";
-	    	addName.innerHTML = starter.name;
-	    	dishRow1.append(addName);
+    		var addName = document.createElement("div");
+    		addName.className = "col col-md-8";
+    		addName.innerHTML = starter.name;
+    		dishRow1.append(addName);
 
-	    	var addPrice = document.createElement("div");
-	    	addPrice.className = "col col-md-2";
-	    	addPrice.style.textAlign = "right";
-	    	addPrice.innerHTML = getTotalDishPrice(starter, guests);
-	    	dishRow1.append(addPrice);
-		}
+    		var addPrice = document.createElement("div");
+    		addPrice.className = "col col-md-2";
+    		addPrice.style.textAlign = "right";
+    		addPrice.innerHTML = getTotalDishPrice(starter, guests);
+    		dishRow1.append(addPrice);
+    	}
 
-		if(!(typeof(main) == 'undefined')){
-			dishRow2.innerHTML = '';
-			var addRemoveDiv = document.createElement("div");
-	    	addRemoveDiv.className = "col col-md-1";
-	    	dishRow2.append(addRemoveDiv);
+    	if(!(typeof(main) == 'undefined')){
+    		dishRow2.innerHTML = '';
+    		var addRemoveDiv = document.createElement("div");
+    		addRemoveDiv.className = "col col-md-1";
+    		dishRow2.append(addRemoveDiv);
 
-	    	var removeButton = document.createElement("button");
-	    	removeButton.type = "button";
-	    	removeButton.innerHTML = "x";
-	    	removeButton.id = "removeButton";
-	    	removeButton.onclick = function (e){
-	    		model.removeDishFromMenu(main.id);
-	    		dishRow2.innerHTML = '';
-	    	}
-	    	
-	    	addRemoveDiv.append(removeButton);
+    		var removeButton = document.createElement("button");
+    		removeButton.type = "button";
+    		removeButton.innerHTML = "x";
+    		removeButton.id = "removeButton";
+    		removeButton.onclick = function (e){
+    			model.removeDishFromMenu(main.id);
+    			dishRow2.innerHTML = '';
+    		}
 
-	    	var addGuests = document.createElement("div");
-	    	addGuests.className = "col col-md-1";
-	    	addGuests.innerHTML = guests;
-	    	dishRow2.append(addGuests);
+    		addRemoveDiv.append(removeButton);
 
-	    	var addName = document.createElement("div");
-	    	addName.className = "col col-md-8";
-	    	addName.innerHTML = main.name;
-	    	dishRow2.append(addName);
+    		var addGuests = document.createElement("div");
+    		addGuests.className = "col col-md-1";
+    		addGuests.innerHTML = guests;
+    		dishRow2.append(addGuests);
 
-	    	var addPrice = document.createElement("div");
-	    	addPrice.className = "col col-md-2";
-	    	addPrice.style.textAlign = "right";
-	    	addPrice.innerHTML = getTotalDishPrice(main, guests);
-	    	dishRow2.append(addPrice);
-		}
+    		var addName = document.createElement("div");
+    		addName.className = "col col-md-8";
+    		addName.innerHTML = main.name;
+    		dishRow2.append(addName);
 
-		if(!(typeof(dessert) == 'undefined')){
-			dishRow3.innerHTML = '';
-			var addRemoveDiv = document.createElement("div");
-	    	addRemoveDiv.className = "col col-md-1";
-	    	dishRow3.append(addRemoveDiv);
+    		var addPrice = document.createElement("div");
+    		addPrice.className = "col col-md-2";
+    		addPrice.style.textAlign = "right";
+    		addPrice.innerHTML = getTotalDishPrice(main, guests);
+    		dishRow2.append(addPrice);
+    	}
 
-	    	var removeButton = document.createElement("button");
-	    	removeButton.type = "button";
-	    	removeButton.innerHTML = "x";
-	    	removeButton.id = "removeButton";
-	    	removeButton.onclick = function (e){
-	    		model.removeDishFromMenu(dessert.id);
-	    		dishRow3.innerHTML = '';
-	    	}
-	    	
-	    	addRemoveDiv.append(removeButton);
+    	if(!(typeof(dessert) == 'undefined')){
+    		dishRow3.innerHTML = '';
+    		var addRemoveDiv = document.createElement("div");
+    		addRemoveDiv.className = "col col-md-1";
+    		dishRow3.append(addRemoveDiv);
 
-	    	var addGuests = document.createElement("div");
-	    	addGuests.className = "col col-md-1";
-	    	addGuests.innerHTML = guests;
-	    	dishRow3.append(addGuests);
+    		var removeButton = document.createElement("button");
+    		removeButton.type = "button";
+    		removeButton.innerHTML = "x";
+    		removeButton.id = "removeButton";
+    		removeButton.onclick = function (e){
+    			model.removeDishFromMenu(dessert.id);
+    			dishRow3.innerHTML = '';
+    		}
 
-	    	var addName = document.createElement("div");
-	    	addName.className = "col col-md-8";
-	    	addName.innerHTML = dessert.name;
-	    	dishRow3.append(addName);
+    		addRemoveDiv.append(removeButton);
 
-	    	var addPrice = document.createElement("div");
-	    	addPrice.className = "col col-md-2";
-	    	addPrice.style.textAlign = "right";
-	    	addPrice.innerHTML = getTotalDishPrice(dessert, guests);
-	    	dishRow3.append(addPrice);
-		}
+    		var addGuests = document.createElement("div");
+    		addGuests.className = "col col-md-1";
+    		addGuests.innerHTML = guests;
+    		dishRow3.append(addGuests);
 
-    }
+    		var addName = document.createElement("div");
+    		addName.className = "col col-md-8";
+    		addName.innerHTML = dessert.name;
+    		dishRow3.append(addName);
+
+    		var addPrice = document.createElement("div");
+    		addPrice.className = "col col-md-2";
+    		addPrice.style.textAlign = "right";
+    		addPrice.innerHTML = getTotalDishPrice(dessert, guests);
+    		dishRow3.append(addPrice);
+    	}
 
     }
-
-
-
-
-
 
 	function confirmDinner(){
 
@@ -279,32 +272,36 @@ var SideBar = function (container,model) {
 		$('#page3').hide();
 		$('#overview_page').show();
 	}
+}
 
-	function incrementValue(model){
-		var guests = model.getNumberOfGuests();
-		model.setNumberOfGuests(guests + 1);
+
+
+
+function incrementValue(model){
+	var guests = model.getNumberOfGuests();
+	model.setNumberOfGuests(guests + 1);
+	var value = parseInt(document.getElementById('textbox').value, 10);
+	value++;
+	document.getElementById('textbox').value = value;
+
+}
+
+function decrementValue(model){
+	var guests = model.getNumberOfGuests();
+	console.log(guests);
+	if(guests > 1){
+		model.setNumberOfGuests(guests - 1);
 		var value = parseInt(document.getElementById('textbox').value, 10);
-		value++;
+		value--;
 		document.getElementById('textbox').value = value;
-
 	}
+}
 
-	function decrementValue(model){
-		var guests = model.getNumberOfGuests();
-		console.log(guests);
-		if(guests > 1){
-			model.setNumberOfGuests(guests - 1);
-			var value = parseInt(document.getElementById('textbox').value, 10);
-			value--;
-			document.getElementById('textbox').value = value;
-		}
+function getTotalDishPrice(dish, guests){
+	var ingredients = dish.ingredients;
+	var price = 0;
+	for(var i = 0; i < ingredients.length; i++){
+		price += ingredients[i].price;
 	}
-
-	function getTotalDishPrice(dish, guests){
-		var ingredients = dish.ingredients;
-		var price = 0;
-		for(var i = 0; i < ingredients.length; i++){
-			price += ingredients[i].price;
-		}
-		return price * guests;
-	}
+	return price * guests;
+}

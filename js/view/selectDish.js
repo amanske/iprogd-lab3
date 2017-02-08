@@ -1,6 +1,6 @@
 var SelectDish = function (container, dinnermodel) {
 
-    dinnermodel.addObserver(this);
+	dinnermodel.addObserver(this);
     //WHOLE VIEW CONTAINER
     var viewContainer = document.createElement("div");
     viewContainer.className += " container";
@@ -106,60 +106,61 @@ var SelectDish = function (container, dinnermodel) {
 
     //SEARCHBUTTONS ONCLICK
     searchButton.onclick = function(e){
-        searchFood(dinnermodel);
+    	searchFood(dinnermodel);
     }
     searchButton.click();
 
     this.update = function (obj) {
     }
 
-}
 
-function searchFood(model){
-    document.getElementById("foodList").innerHTML = '';
-    var filter = document.getElementById("selectedDishSearch").value;
-    var type = document.getElementById("chosenCourse").value;
-    var dishesToShow = model.getAllDishes(type,filter);
 
-    var counter = 0;
-    for(var i = 0; i < dishesToShow.length; i++){
-        var dish = dishesToShow[i];
+    function searchFood(model){
+    	document.getElementById("foodList").innerHTML = '';
+    	var filter = document.getElementById("selectedDishSearch").value;
+    	var type = document.getElementById("chosenCourse").value;
+    	var dishesToShow = model.getAllDishes(type,filter);
 
-        //FOOD CONTAINER 1
-        var foodContainer = document.createElement("div");
-        foodContainer.className += "col col-md-2 foodContainer";
-        if(!counter){ //HOT FIX MOTHERFUCKERS
-            foodContainer.id = "firstFood";
-        }
-        counter++;
-        foodList.append(foodContainer);
+    	var counter = 0;
+    	for(var i = 0; i < dishesToShow.length; i++){
+    		var dish = dishesToShow[i];
 
-        //FOOD PICTURE 2
-        var pictureOfFood = document.createElement("img");
-        pictureOfFood.setAttribute("src", "images/" + dish.image);
-        pictureOfFood.className += " selectDishFoodPicture";
-        foodContainer.append(pictureOfFood);
+	        //FOOD CONTAINER 1
+	        var foodContainer = document.createElement("div");
+	        foodContainer.className += "col col-md-2 foodContainer";
+	        if(!counter){ //HOT FIX MOTHERFUCKERS
+	        	foodContainer.id = "firstFood";
+	        }
+	        counter++;
+	        foodList.append(foodContainer);
 
-        //FOOD TITLE 3 (button)
-        var foodTitle = document.createElement("button");
-        foodContainer.append(foodTitle);
-        foodTitle.className += "btn button-default selectDishFoodTitle";
-        foodTitle.innerHTML = dish.name;
-        foodTitle.setAttribute("type", "button");
-        foodTitle.clickId = dish.id;
-        foodTitle.onclick = function(e){
-            model.setDishToShow(this.clickId);
-            showItemDescription();
-        }
+	        //FOOD PICTURE 2
+	        var pictureOfFood = document.createElement("img");
+	        pictureOfFood.setAttribute("src", "images/" + dish.image);
+	        pictureOfFood.className += " selectDishFoodPicture";
+	        foodContainer.append(pictureOfFood);
 
-        //FOOD DESCRIPTION 4 (text)
-        var foodDescription = document.createElement("p");
-        foodDescription.innerHTML = dish.description;
-        foodContainer.append(foodDescription);
-    }
-}
+	        //FOOD TITLE 3 (button)
+	        var foodTitle = document.createElement("button");
+	        foodContainer.append(foodTitle);
+	        foodTitle.className += "btn button-default selectDishFoodTitle";
+	        foodTitle.innerHTML = dish.name;
+	        foodTitle.setAttribute("type", "button");
+	        foodTitle.clickId = dish.id;
+	        foodTitle.onclick = function(e){
+	        	model.setDishToShow(this.clickId);
+	        	showItemDescription();
+	        }
 
-function showItemDescription(){
-    $('#selectDish').hide();
-    $('#page3').show();
+	        //FOOD DESCRIPTION 4 (text)
+	        var foodDescription = document.createElement("p");
+	        foodDescription.innerHTML = dish.description;
+	        foodContainer.append(foodDescription);
+	    }
+	}
+
+	function showItemDescription(){
+		$('#selectDish').hide();
+		$('#page3').show();
+	}
 }

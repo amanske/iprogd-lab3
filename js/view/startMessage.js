@@ -29,11 +29,12 @@ var StartMessage = function (container) {
     startButton.className += " btn-default";
     startButton.innerHTML = "Create new dinner";
     welcomeBox.append(startButton);
+
+	function startDinnerPlanner(){
+	    $('#mainStart').hide();
+	    $('body').css('background-image', 'none');
+	    $('#sideBarDiv').show();
+	    $('#selectDish').show();
+	}
 }
 
-function startDinnerPlanner(){
-    $('#mainStart').hide();
-    $('body').css('background-image', 'none');
-    $('#sideBarDiv').show();
-    $('#selectDish').show();
-}

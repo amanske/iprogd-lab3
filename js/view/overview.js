@@ -51,24 +51,24 @@ var Overview = function(container, model) {
     var printRecipeButton = document.getElementById("printRecipe");
     printRecipeButton.onclick = printFullRecipe;
 
-}
-
-function printFullRecipe(){
-    $('#overview_page').hide();
-    $('#print_page').show();
-}
-
-function backToSelectDish(){
-    $('#overview_page').hide();
-    $('#sideBarDiv').show();
-    $('#selectDish').show();
-}
-
-function getTotalDishPrice(dish, guests){
-	var ingredients = dish.ingredients;
-	var price = 0;
-	for(var i = 0; i < ingredients.length; i++){
-		price += ingredients[i].price;
+	function printFullRecipe(){
+	    $('#overview_page').hide();
+	    $('#print_page').show();
 	}
-	return price * guests;
+
+	function backToSelectDish(){
+	    $('#overview_page').hide();
+	    $('#sideBarDiv').show();
+	    $('#selectDish').show();
+	}
+
+	function getTotalDishPrice(dish, guests){
+		var ingredients = dish.ingredients;
+		var price = 0;
+		for(var i = 0; i < ingredients.length; i++){
+			price += ingredients[i].price;
+		}
+		return price * guests;
+	}
 }
+

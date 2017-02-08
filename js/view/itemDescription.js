@@ -19,22 +19,22 @@ var ItemDescription = function (container, model){
 
         if(!(typeof(obj) == 'undefined') && !(typeof(obj.dishId) == 'undefined')){
         	if(obj.dishId != -1){
-	            dishToShow = model.getDish(obj.dishId);
-		        dishToShowName.innerHTML = dishToShow.name;
-				foodImage.src = "images/" + dishToShow.image;
-				dishToShowDesc.innerHTML = dishToShow.description;
-			}
+        		dishToShow = model.getDish(obj.dishId);
+        		dishToShowName.innerHTML = dishToShow.name;
+        		foodImage.src = "images/" + dishToShow.image;
+        		dishToShowDesc.innerHTML = dishToShow.description;
+        	}
         }
 
-		guests = model.getNumberOfGuests();
-		fillIngredients(dishToShow, guests);
-		ingBoxGuestNumber.innerHTML = 'INGREDIENTS FOR ' + guests + ' PEOPLE';
-	}
+        guests = model.getNumberOfGuests();
+        fillIngredients(dishToShow, guests);
+        ingBoxGuestNumber.innerHTML = 'INGREDIENTS FOR ' + guests + ' PEOPLE';
+    }
     var backButton = document.getElementById("itemDescToSelDishButton");
     backButton.onclick = function(e){
-        $('#page3').hide();
-        $('#selectDish').show();
-        model.setDishToShow(-1);
+    	$('#page3').hide();
+    	$('#selectDish').show();
+    	model.setDishToShow(-1);
     }
     var confirmButton = document.getElementById("confirmDishButton");
     confirmButton.onclick = function (e) {
@@ -43,61 +43,63 @@ var ItemDescription = function (container, model){
     	model.addDishToMenu(dishToShow.id);
     	model.setDishToShow(-1);
     }
-}
 
+    //fills the ingredient list with the ingredients of the given dish object. 
+    function fillIngredients (dish, guests){
+    	var ingredients = dish.ingredients;
 
-//fills the ingredient list with the ingredients of the given dish object. 
-function fillIngredients (dish, guests){
-	var ingredients = dish.ingredients;
+		//fetch id's and nullify thier (possible) previous content.
+		var ingredientName = document.getElementById("ingredientName");
+		ingredientName.innerHTML = '';
 
-	//fetch id's and nullify thier (possible) previous content.
-	var ingredientName = document.getElementById("ingredientName");
-	ingredientName.innerHTML = '';
+		var ingredientPrice = document.getElementById("ingredientPrice");
+		ingredientPrice.innerHTML = '';
 
-	var ingredientPrice = document.getElementById("ingredientPrice");
-	ingredientPrice.innerHTML = '';
+		var ingredientAmount = document.getElementById("ingredientAmount");
+		ingredientAmount.innerHTML = '';
 
-	var ingredientAmount = document.getElementById("ingredientAmount");
-	ingredientAmount.innerHTML = '';
+		var ingredientCurrency = document.getElementById("ingredientCurrency");
+		ingredientCurrency.innerHTML = '';
 
-	var ingredientCurrency = document.getElementById("ingredientCurrency");
-	ingredientCurrency.innerHTML = '';
+		var totalPrice = document.getElementById("totalPrice");
+		totalPrice.innerHTML = '';
 
-	var totalPrice = document.getElementById("totalPrice");
-	totalPrice.innerHTML = '';
+		var totalCost = 0;
 
-	var totalCost = 0;
+		for(var i = 0; i < ingredients.length; i++){
 
-	for(var i = 0; i < ingredients.length; i++){
+			//populate names
+			var name = document.createElement("p");
+			name.innerHTML = ingredients[i].name;
+			ingredientName.append(name);
 
-		//populate names
-		var name = document.createElement("p");
-		name.innerHTML = ingredients[i].name;
-		ingredientName.append(name);
+			//populate prices
+			var prices = document.createElement("p");
+			var price = ingredients[i].price * guests;
+			prices.innerHTML = price;
+			ingredientPrice.append(prices);
 
-		//populate prices
-		var prices = document.createElement("p");
-		var price = ingredients[i].price * guests;
-		prices.innerHTML = price;
-		ingredientPrice.append(prices);
+			//populate amounts
+			var amount = document.createElement("p");
+			amount.innerHTML = Math.round(((ingredients[i].quantity) * guests* 100))/100 + " " + ingredients[i].unit; //round to max 2 dec. places
+			ingredientAmount.append(amount);
 
-		//populate amounts
-		var amount = document.createElement("p");
-		amount.innerHTML = Math.round(((ingredients[i].quantity) * guests* 100))/100 + " " + ingredients[i].unit; //round to max 2 dec. places
-		ingredientAmount.append(amount);
+			//populate currency
+			var currency = document.createElement("p");
+			currency.innerHTML = "SEK"; // SEK by default
+			ingredientCurrency.append(currency);
 
-		//populate currency
-		var currency = document.createElement("p");
-		currency.innerHTML = "SEK"; // SEK by default
-		ingredientCurrency.append(currency);
+			//to calculate the total cost of the ingredients
+			totalCost += price;
+		}
 
-		//to calculate the total cost of the ingredients
-		totalCost += price;
+		var total = document.createElement("p");
+		total.innerHTML = totalCost;
+		totalPrice.append(total);
+
 	}
-
-	var total = document.createElement("p");
-	total.innerHTML = totalCost;
-	totalPrice.append(total);
-
 }
+
+
+
 
