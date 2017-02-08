@@ -93,10 +93,22 @@ var SideBar = function (container,model) {
 
 	    //populate w dishes already added to menu
     	for (var i = 0; i < allMenuDishes.length; i++){
+
+	    	
     		var dishRow = document.createElement("div");
     		dishRow.className = "row";
     		dishRow.id = "dishRow";
     		sideBar.append(dishRow);
+
+    		var addRemoveDiv = document.createElement("div");
+    		addRemoveDiv.className = "col col-md-1";
+	    	dishRow.append(addRemoveDiv);
+
+	    	var removeButton = document.createElement("button");
+	    	removeButton.type = "button";
+	    	removeButton.innerHTML = "x";
+	    	removeButton.id = "removeButton";
+	    	addRemoveDiv.append(removeButton);
 
     		var addGuests = document.createElement("div");
     		addGuests.className = "col col-md-1";
@@ -109,10 +121,12 @@ var SideBar = function (container,model) {
     		dishRow.append(addName);
 
     		var addPrice = document.createElement("div");
-    		addPrice.className = "col col-md-3";
+    		addPrice.className = "col col-md-2";
     		addPrice.style.textAlign = "right";
 	    	addPrice.innerHTML = getTotalDishPrice(allMenuDishes[i], guests);
 	    	dishRow.append(addPrice);
+
+	    	
 
 		}
 
