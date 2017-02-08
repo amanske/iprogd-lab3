@@ -1,10 +1,10 @@
 var Print = function (container, model){
 
 	////// FOR TESTING PURPOSES ////
-	model.addDishToMenu(1);
-	model.addDishToMenu(100);
-	model.addDishToMenu(201);
-	model.setNumberOfGuests(5);
+	//model.addDishToMenu(1);
+	//model.addDishToMenu(100);
+	//model.addDishToMenu(201);
+	//model.setNumberOfGuests(5);
 	///////////////////////////////
 
 	model.addObserver(this);
