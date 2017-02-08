@@ -26,6 +26,12 @@ var TopBanner = function (container) {
 
 function setStartScreen(){
     $("#mainStart").show();
+    $("#page3").hide();
+    $("#selectDish").hide();
+    $("#sideBarDiv").hide();
+    $("#print_page").hide();
+    $("#overview_page").hide();
+    $("body").css("background-image", "url(images/background_tomato_eating.jpg)");
 }
 
  

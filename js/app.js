@@ -28,6 +28,6 @@ $(function() {
     $('#print_page').hide();
     $('#sideBarDiv').hide();
    
-    model.setDocReady();
+    //model.setDocReady();
 
 });

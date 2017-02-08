@@ -1,8 +1,9 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
-    var numberOfGuests;
+    var numberOfGuests = 2;
     var selectedDishes = []; //dishes on the menu
+    var currentDishId;
 
     var documentReadyForNotifies = false;
     this.setDocReady = function(){
@@ -17,16 +18,22 @@ var DinnerModel = function() {
     }
 
     this.setDishToShow = function(dishId){
-        var messengerObj = {dishId:dishId}
+        var messengerObj = {dishId:dishId};
+        currentDishId = dishId;
         notifyObservers(messengerObj);
+
+    }
+
+    this.getDishToShow = function(){
+    	return currentDishId;
     }
 
     //call the update method on all of the observers
     var notifyObservers = function (obj) {
     	for(var i = 0; i < observers.length; i++){
-            if(documentReadyForNotifies){
+            //if(documentReadyForNotifies){
                 observers[i].update(obj);
-            }
+            //}
     	}
     }
 

@@ -9,9 +9,11 @@ var Print = function (container, model){
 
 	model.addObserver(this);
 	var guests = model.getNumberOfGuests();
-	populatePrintView(model, guests);
+	//populatePrintView(model, guests);
 
 	this.update = function (obj) {
+		guests = model.getNumberOfGuests();
+		populatePrintView(model,guests);
 	}
 
 }

@@ -96,7 +96,7 @@ hr {
 }
 
 
-#dishRow {
+#dishRow1 {
 	border-style: solid;
 	border-width: 3px;
 	margin-left: 5px !important;
@@ -110,7 +110,45 @@ hr {
 	background-color: #f6f6f6; 
 }
 
-#dishRow .col {
+#dishRow1 .col {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+#dishRow2 {
+	border-style: solid;
+	border-width: 3px;
+	margin-left: 5px !important;
+	margin-bottom: 5px;
+	margin-right: 5px !important;
+	margin-top: 5px;
+	padding-top: 6px;
+	padding-bottom: 4px;
+	padding-right: 7px !important;
+	width: auto;
+	background-color: #f6f6f6; 
+}
+
+#dishRow2 .col {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+#dishRow3 {
+	border-style: solid;
+	border-width: 3px;
+	margin-left: 5px !important;
+	margin-bottom: 5px;
+	margin-right: 5px !important;
+	margin-top: 5px;
+	padding-top: 6px;
+	padding-bottom: 4px;
+	padding-right: 7px !important;
+	width: auto;
+	background-color: #f6f6f6; 
+}
+
+#dishRow3 .col {
 	padding-right: 0px;
 	padding-left: 0px;
 }
@@ -246,7 +284,7 @@ hr {
 
 #print_page {
 	margin-left: 0px;
-	width: calc(100% - 15px);
+	width: 100%;
 	padding-left: 0px;
 	padding-right: 0px;
 }
