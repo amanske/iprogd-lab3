@@ -272,36 +272,38 @@ var SideBar = function (container,model) {
 		$('#page3').hide();
 		$('#overview_page').show();
 	}
-}
 
-
-
-
-function incrementValue(model){
+	function incrementValue(model){
 	var guests = model.getNumberOfGuests();
 	model.setNumberOfGuests(guests + 1);
 	var value = parseInt(document.getElementById('textbox').value, 10);
 	value++;
 	document.getElementById('textbox').value = value;
 
-}
+	}
 
-function decrementValue(model){
-	var guests = model.getNumberOfGuests();
-	console.log(guests);
-	if(guests > 1){
-		model.setNumberOfGuests(guests - 1);
-		var value = parseInt(document.getElementById('textbox').value, 10);
-		value--;
-		document.getElementById('textbox').value = value;
+	function decrementValue(model){
+		var guests = model.getNumberOfGuests();
+		console.log(guests);
+		if(guests > 1){
+			model.setNumberOfGuests(guests - 1);
+			var value = parseInt(document.getElementById('textbox').value, 10);
+			value--;
+			document.getElementById('textbox').value = value;
+		}
+	}
+
+	function getTotalDishPrice(dish, guests){
+		var ingredients = dish.ingredients;
+		var price = 0;
+		for(var i = 0; i < ingredients.length; i++){
+			price += ingredients[i].price;
+		}
+		return price * guests;
 	}
 }
 
-function getTotalDishPrice(dish, guests){
-	var ingredients = dish.ingredients;
-	var price = 0;
-	for(var i = 0; i < ingredients.length; i++){
-		price += ingredients[i].price;
-	}
-	return price * guests;
-}
+
+
+
+
