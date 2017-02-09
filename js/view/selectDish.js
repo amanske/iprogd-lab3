@@ -1,5 +1,6 @@
 var SelectDish = function (container, dinnermodel) {
 
+
 	dinnermodel.addObserver(this);
     //WHOLE VIEW CONTAINER
     var viewContainer = document.createElement("div");
@@ -57,12 +58,12 @@ var SelectDish = function (container, dinnermodel) {
     searchButtonContainer.className += " col-md-2";
     searchContainer.append(searchButtonContainer);
 
-    var searchButton = document.createElement("button");
-    searchButton.innerHTML = "SEARCH";
-    searchButton.setAttribute("type", "button");
-    searchButton.className += " btn button-default";
-    searchButton.id = "selectedDishSearchButton";
-    searchButtonContainer.append(searchButton);
+    this.searchButton = document.createElement("button");
+    this.searchButton.innerHTML = "SEARCH";
+    this.searchButton.setAttribute("type", "button");
+    this.searchButton.className += " btn button-default";
+    this.searchButton.id = "selectedDishSearchButton";
+    searchButtonContainer.append(this.searchButton);
 
     
 
@@ -104,62 +105,12 @@ var SelectDish = function (container, dinnermodel) {
     viewContainer.append(foodList);
 
 
-    //SEARCHBUTTONS ONCLICK
-    searchButton.onclick = function(e){
-    	searchFood(dinnermodel);
-    }
-    searchButton.click();
-
     this.update = function (obj) {
     }
 
 
 
-    function searchFood(model){
-    	document.getElementById("foodList").innerHTML = '';
-    	var filter = document.getElementById("selectedDishSearch").value;
-    	var type = document.getElementById("chosenCourse").value;
-    	var dishesToShow = model.getAllDishes(type,filter);
-
-    	var counter = 0;
-    	for(var i = 0; i < dishesToShow.length; i++){
-    		var dish = dishesToShow[i];
-
-	        //FOOD CONTAINER 1
-	        var foodContainer = document.createElement("div");
-	        foodContainer.className += "col col-md-2 foodContainer";
-	        if(!counter){ //HOT FIX MOTHERFUCKERS
-	        	foodContainer.id = "firstFood";
-	        }
-	        counter++;
-	        foodList.append(foodContainer);
-
-	        //FOOD PICTURE 2
-	        var pictureOfFood = document.createElement("img");
-	        pictureOfFood.setAttribute("src", "images/" + dish.image);
-	        pictureOfFood.className += " selectDishFoodPicture";
-	        foodContainer.append(pictureOfFood);
-
-	        //FOOD TITLE 3 (button)
-	        var foodTitle = document.createElement("button");
-	        foodContainer.append(foodTitle);
-	        foodTitle.className += "btn button-default selectDishFoodTitle";
-	        foodTitle.innerHTML = dish.name;
-	        foodTitle.setAttribute("type", "button");
-	        foodTitle.clickId = dish.id;
-	        foodTitle.onclick = function(e){
-	        	model.setDishToShow(this.clickId);
-	        	showItemDescription();
-	        }
-
-	        //FOOD DESCRIPTION 4 (text)
-	        var foodDescription = document.createElement("p");
-	        foodDescription.innerHTML = dish.description;
-	        foodContainer.append(foodDescription);
-	    }
-	}
-
-	function showItemDescription(){
+	this.showItemDescription = function(){
 		$('#selectDish').hide();
 		$('#page3').show();
 	}

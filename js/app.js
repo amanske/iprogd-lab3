@@ -17,6 +17,7 @@ $(function() {
     }
     if ($("#selectDish").length){ //if div exists
         var selectDish = new SelectDish($("#selectDish"), model);
+        var selectDishController = new SelectDishController(selectDish, model);
     }
     
     if ($("#sideBarDiv").length){ //if div exists
