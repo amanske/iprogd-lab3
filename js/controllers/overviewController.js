@@ -1,10 +1,10 @@
-var OverviewController = function (view,model){
+var OverviewController = function (view,model,sc){
 
 	view.goBackButton.onclick = function (e){
-		view.backToSelectDish();
+		sc.backToSelectDish();
 	}
 
 	view.printRecipeButton.onclick = function (e){
-		view.printFullRecipe();
+		sc.printFullRecipe();
 	}
 }

@@ -1,4 +1,4 @@
-var SelectDishController = function(view, model){
+var SelectDishController = function(view, model, sc){
 
     view.searchButton.onclick = function(e){
     	var foodList = $("#selectDish").find("#foodList").get(0);
@@ -35,7 +35,7 @@ var SelectDishController = function(view, model){
 	        foodTitle.clickId = dish.id;
 	        foodTitle.onclick = function(e){
 	        	model.setDishToShow(this.clickId);
-	        	view.showItemDescription();
+	        	sc.showItemDescription();
 	        }
 
 	        //FOOD DESCRIPTION 4 (text)

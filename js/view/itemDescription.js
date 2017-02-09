@@ -33,9 +33,7 @@ var ItemDescription = function (container, model){
     
     this.confirmButton = container.find("#confirmDishButton").get(0);
 
-    this.confirmDish = function (){
-    	$('#page3').hide();
-    	$('#selectDish').show();
+    this.confirmDish = function () {
     	model.addDishToMenu(dishToShow.id);
     	model.setDishToShow(-1);
     }

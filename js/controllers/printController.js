@@ -1,6 +1,6 @@
-var PrintController = function (view, model) {
+var PrintController = function (view, model, sc) {
 
 	view.button.onclick = function (e) {
-		view.backToSelectDish2();
+		sc.backToSelectDish2();
 	}
 }

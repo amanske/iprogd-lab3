@@ -1,4 +1,4 @@
-var SideBarController = function (view, model) {
+var SideBarController = function (view, model, sc) {
 
 	view.buttonUp.onclick = function (e) {
 		view.incrementValue();
@@ -9,6 +9,6 @@ var SideBarController = function (view, model) {
 	}
 
 	view.confButton.onclick = function (e) {
-		view.confirmDinner();
+		sc.confirmDinner();
 	}
 }

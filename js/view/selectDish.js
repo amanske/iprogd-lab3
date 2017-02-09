@@ -105,11 +105,4 @@ var SelectDish = function (container, dinnermodel) {
 
     this.update = function (obj) {
     }
-
-
-
-	this.showItemDescription = function(){
-		$('#selectDish').hide();
-		$('#page3').show();
-	}
 }

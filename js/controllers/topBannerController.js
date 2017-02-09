@@ -1,6 +1,6 @@
-var TopBannerController = function (view, model) {
+var TopBannerController = function (view, model,sc) {
 
 	view.navHeader.onclick = function (e) {
-		view.setStartScreen();
+		sc.setStartScreen();
 	}
 }

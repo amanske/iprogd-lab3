@@ -23,15 +23,6 @@ var TopBanner = function (container) {
     navQuote.innerHTML = "From the best chefs in the world directly into your kitchen";
     navContainer.append(navQuote);
     
-	this.setStartScreen = function (){
-	    $("#mainStart").show();
-	    $("#page3").hide();
-	    $("#selectDish").hide();
-	    $("#sideBarDiv").hide();
-	    $("#print_page").hide();
-	    $("#overview_page").hide();
-	    $("body").css("background-image", "url(images/background_tomato_eating.jpg)");
-	}
 }
 
 

@@ -252,13 +252,6 @@ var SideBar = function (container,model) {
 
     }
 
-	this.confirmDinner = function (){
-		$('#sideBarDiv').hide();
-		$('#selectDish').hide();
-		$('#page3').hide();
-		$('#overview_page').show();
-	}
-
 	this.incrementValue = function (){
 		model.setNumberOfGuests(guests + 1);
 		var value = parseInt(container.find('#textbox').val(), 10);

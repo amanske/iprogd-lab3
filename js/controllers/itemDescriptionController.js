@@ -1,12 +1,12 @@
-var ItemDescriptionController = function (view, model) {
+var ItemDescriptionController = function (view, model, sc) {
 
 	view.backButton.onclick = function (e){
-		$('#page3').hide();
-    	$('#selectDish').show();
     	model.setDishToShow(-1);
+		sc.backButtonItemDesc();
 	}
 
 	view.confirmButton.onclick = function (e){
 		view.confirmDish();
+		sc.confirmDish();
 	}
 }

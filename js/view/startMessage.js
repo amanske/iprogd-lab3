@@ -27,12 +27,5 @@ var StartMessage = function (container) {
     this.startButton.className += " btn-default";
     this.startButton.innerHTML = "Create new dinner";
     welcomeBox.append(this.startButton);
-
-	this.startDinnerPlanner = function(){
-	    $('#mainStart').hide();
-	    $('body').css('background-image', 'none');
-	    $('#sideBarDiv').show();
-	    $('#selectDish').show();
-	}
 }
 

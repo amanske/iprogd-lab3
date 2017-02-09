@@ -60,18 +60,6 @@ var Overview = function(container, model) {
     this.goBackButton = container.find("#goBackAndEdit").get(0); 
     this.printRecipeButton = container.find("#printRecipe").get(0); 
 
-
-	this.printFullRecipe = function(){
-	    $('#overview_page').hide();
-	    $('#print_page').show();
-	}
-
-	this.backToSelectDish = function(){
-	    $('#overview_page').hide();
-	    $('#sideBarDiv').show();
-	    $('#selectDish').show();
-	}
-
 	this.getTotalDishPrice = function (dish, guests){
 		var ingredients = dish.ingredients;
 		var price = 0;

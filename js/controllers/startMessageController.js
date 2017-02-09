@@ -1,6 +1,9 @@
-var StartMessageController = function (view, model) {
+var StartMessageController = function (view, model, sc) {
 
 	view.startButton.onclick = function (e) {
-		view.startDinnerPlanner();
+		//view.startDinnerPlanner();
+		sc.startDinnerPlanner();
 	}
+
+
 }

@@ -9,9 +9,6 @@ var Print = function (container, model){
 
 	model.addObserver(this);
 	var guests = model.getNumberOfGuests();
-	container.append('<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4"> <button class="btn-default" type="button" id="goBackAndEditFromPrint"> Go back and edit dinner </button> </div> </div> </div>');
-	this.button = container.find("#goBackAndEditFromPrint").get(0);// 
-
 
 
 	this.update = function (obj) {
@@ -20,6 +17,7 @@ var Print = function (container, model){
 
 		container.html("");
 		container.append('<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4"> <button class="btn-default" type="button" id="goBackAndEditFromPrint"> Go back and edit dinner </button> </div> </div> </div>');
+		this.button = container.find("#goBackAndEditFromPrint").get(0); 
 
 		//Add banner to container element
 
@@ -55,12 +53,8 @@ var Print = function (container, model){
 
 	
 	}
-	
-	this.backToSelectDish2 = function (){
-		$('#print_page').hide();
-		$('#sideBarDiv').show();
-		$('#selectDish').show();
-	}
+
+	this.update();
 
 }
 
