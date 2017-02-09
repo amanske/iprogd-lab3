@@ -47,21 +47,15 @@ var SideBar = function (container,model) {
 	incrementor.id = "incrementor";
 	numberOfGuests.append(incrementor);
 
-	var buttonUp = document.createElement("button");
-	buttonUp.className += " glyphicon glyphicon-chevron-up";
-	buttonUp.setAttribute("type", "button");
-	buttonUp.onclick = function(e){
-		incrementValue(model);
-	}
-	incrementor.append(buttonUp);
+	this.buttonUp = document.createElement("button");
+	this.buttonUp.className += " glyphicon glyphicon-chevron-up";
+	this.buttonUp.setAttribute("type", "button");
+	incrementor.append(this.buttonUp);
 
-	var buttonDown = document.createElement("button");
-	buttonDown.className += " glyphicon glyphicon-chevron-down";
-	buttonDown.setAttribute("type", "button");
-	buttonDown.onclick = function(e){
-		decrementValue(model);
-	}
-	incrementor.append(buttonDown);
+	this.buttonDown = document.createElement("button");
+	this.buttonDown.className += " glyphicon glyphicon-chevron-down";
+	this.buttonDown.setAttribute("type", "button");
+	incrementor.append(this.buttonDown);
 
 	var dishName = document.createElement("div");
 	dishName.className += " row";
@@ -123,15 +117,11 @@ var SideBar = function (container,model) {
 	confirmButton.id = "confirmButton";
 	sideBar.append(confirmButton);
 
-	var confButton = document.createElement("button");
-	confButton.className += " btn-default"
-	confButton.setAttribute("type", "button");
-	confButton.innerHTML = "Confirm Dinner";
-	confirmButton.append(confButton);
-
-	confButton.onclick = confirmDinner;
-
-
+	this.confButton = document.createElement("button");
+	this.confButton.className += " btn-default"
+	this.confButton.setAttribute("type", "button");
+	this.confButton.innerHTML = "Confirm Dinner";
+	confirmButton.append(this.confButton);
 
 
 	this.update = function (obj) {
@@ -143,13 +133,11 @@ var SideBar = function (container,model) {
 		dessert = model.getSelectedDish("dessert");
 		var dishToShow = model.getDish(model.getDishToShow());
 		if(!(typeof(dishToShow) == 'undefined')){
-			totalPendingDishPrice = getTotalDishPrice(dishToShow, guests);
-		}else{
-
+			totalPendingDishPrice = this.getTotalDishPrice(dishToShow, guests);
 		}
 		pendingSum.innerHTML = totalPendingDishPrice; 
 		pendingSum1.innerHTML = 'SEK ' + (totalMenuPrice + totalPendingDishPrice);
-		rePopSideBar(starter,main,dessert);
+		this.rePopSideBar(starter,main,dessert);
 		if(!(typeof(obj) == 'undefined') && obj.dishId == -1){
 			pendingSum.innerHTML = 0;
 			totalPendingDishPrice = 0;
@@ -158,9 +146,8 @@ var SideBar = function (container,model) {
 		}
 
 	} 
-    //model.setNumberOfGuests(guests); //invokes update
 
-    function rePopSideBar (starter,main,dessert) {
+    this.rePopSideBar = function (starter,main,dessert) {
     	if(!(typeof(starter) == 'undefined')){ 
     		dishRow1.innerHTML = '';
     		var addRemoveDiv = document.createElement("div");
@@ -191,7 +178,7 @@ var SideBar = function (container,model) {
     		var addPrice = document.createElement("div");
     		addPrice.className = "col col-md-2";
     		addPrice.style.textAlign = "right";
-    		addPrice.innerHTML = getTotalDishPrice(starter, guests);
+    		addPrice.innerHTML = this.getTotalDishPrice(starter, guests);
     		dishRow1.append(addPrice);
     	}
 
@@ -225,7 +212,7 @@ var SideBar = function (container,model) {
     		var addPrice = document.createElement("div");
     		addPrice.className = "col col-md-2";
     		addPrice.style.textAlign = "right";
-    		addPrice.innerHTML = getTotalDishPrice(main, guests);
+    		addPrice.innerHTML = this.getTotalDishPrice(main, guests);
     		dishRow2.append(addPrice);
     	}
 
@@ -259,41 +246,36 @@ var SideBar = function (container,model) {
     		var addPrice = document.createElement("div");
     		addPrice.className = "col col-md-2";
     		addPrice.style.textAlign = "right";
-    		addPrice.innerHTML = getTotalDishPrice(dessert, guests);
+    		addPrice.innerHTML = this.getTotalDishPrice(dessert, guests);
     		dishRow3.append(addPrice);
     	}
 
     }
 
-	function confirmDinner(){
-
+	this.confirmDinner = function (){
 		$('#sideBarDiv').hide();
 		$('#selectDish').hide();
 		$('#page3').hide();
 		$('#overview_page').show();
 	}
 
-	function incrementValue(model){
-	var guests = model.getNumberOfGuests();
-	model.setNumberOfGuests(guests + 1);
-	var value = parseInt(document.getElementById('textbox').value, 10);
-	value++;
-	document.getElementById('textbox').value = value;
-
+	this.incrementValue = function (){
+		model.setNumberOfGuests(guests + 1);
+		var value = parseInt(container.find('#textbox').val(), 10);
+		value++;
+		container.find('#textbox').val(value);
 	}
 
-	function decrementValue(model){
-		var guests = model.getNumberOfGuests();
-		console.log(guests);
+	this.decrementValue = function (){
 		if(guests > 1){
 			model.setNumberOfGuests(guests - 1);
-			var value = parseInt(document.getElementById('textbox').value, 10);
+			var value = parseInt(container.find('#textbox').val(), 10);
 			value--;
-			document.getElementById('textbox').value = value;
+			container.find('#textbox').val(value);
 		}
 	}
 
-	function getTotalDishPrice(dish, guests){
+	this.getTotalDishPrice = function (dish, guests){
 		var ingredients = dish.ingredients;
 		var price = 0;
 		for(var i = 0; i < ingredients.length; i++){

@@ -19,50 +19,60 @@ var Overview = function(container, model) {
 		main = model.getSelectedDish("main dish");
 		dessert = model.getSelectedDish("dessert");
 		guests = model.getNumberOfGuests();
-		document.getElementById("dinnerGuests").innerHTML = 'My Dinner: ' + guests + ' people';
+		container.find("#dinnerGuests").html("My Dinner: " + guests + " people");
 
 		if(!(typeof(starter) == 'undefined')){
-			document.getElementById("startImage").src = 'images/' + starter.image;
-			document.getElementById("startName").innerHTML = starter.name;
-			document.getElementById("startPrice").innerHTML = getTotalDishPrice(starter,guests) + ' SEK';
+			container.find("#startImage").attr('src', 'images/' + starter.image);
+			container.find("#startName").html(starter.name);
+			container.find('#startPrice').html(this.getTotalDishPrice(starter,guests) + ' SEK');
+
+		}else{
+			container.find("#startImage").attr('src', '');
+			container.find("#startName").html('');
+			container.find('#startPrice').html('');
 		}
 
 		if(!(typeof(main) == 'undefined')){
-			document.getElementById("mainImage").src = 'images/' + main.image;
-			document.getElementById("mainName").innerHTML = main.name;
-			document.getElementById("mainPrice").innerHTML = getTotalDishPrice(main,guests) + ' SEK';
+			container.find("#mainImage").attr('src', 'images/' + main.image);
+			container.find("#mainName").html(main.name);
+			container.find('#mainPrice').html(this.getTotalDishPrice(main,guests) + ' SEK');
+		}else{
+			container.find("#mainImage").attr('src', '');
+			container.find("#mainName").html('');
+			container.find('#mainPrice').html('');
 		}
 
 		if(!(typeof(dessert) == 'undefined')){
-			document.getElementById("dessertImage").src = 'images/' + dessert.image;
-			document.getElementById("dessertName").innerHTML = dessert.name;
-			document.getElementById("dessertPrice").innerHTML = getTotalDishPrice(dessert,guests) + ' SEK';
+			container.find("#dessertImage").attr('src', 'images/' + dessert.image);
+			container.find("#dessertName").html(dessert.name);
+			container.find('#dessertPrice').html(this.getTotalDishPrice(dessert,guests) + ' SEK');
+
+		}else{
+			container.find("#dessertImage").attr('src', '');
+			container.find("#dessertName").html('');
+			container.find('#dessertPrice').html('');
 		}
-		document.getElementById("totalPriceSpan").innerText = model.getTotalMenuPrice() + ' SEK'; //FIX
+		container.find("#totalPriceSpan").html(model.getTotalMenuPrice() + ' SEK');
 
 	}
 		
 
+    this.goBackButton = container.find("#goBackAndEdit").get(0); 
+    this.printRecipeButton = container.find("#printRecipe").get(0); 
 
 
-    var goBackButton = document.getElementById("goBackAndEdit");
-    goBackButton.onclick = backToSelectDish;
-
-    var printRecipeButton = document.getElementById("printRecipe");
-    printRecipeButton.onclick = printFullRecipe;
-
-	function printFullRecipe(){
+	this.printFullRecipe = function(){
 	    $('#overview_page').hide();
 	    $('#print_page').show();
 	}
 
-	function backToSelectDish(){
+	this.backToSelectDish = function(){
 	    $('#overview_page').hide();
 	    $('#sideBarDiv').show();
 	    $('#selectDish').show();
 	}
 
-	function getTotalDishPrice(dish, guests){
+	this.getTotalDishPrice = function (dish, guests){
 		var ingredients = dish.ingredients;
 		var price = 0;
 		for(var i = 0; i < ingredients.length; i++){

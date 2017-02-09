@@ -9,21 +9,20 @@ var Print = function (container, model){
 
 	model.addObserver(this);
 	var guests = model.getNumberOfGuests();
-	//populatePrintView(model, guests);
+	container.append('<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4"> <button class="btn-default" type="button" id="goBackAndEditFromPrint"> Go back and edit dinner </button> </div> </div> </div>');
+	this.button = container.find("#goBackAndEditFromPrint").get(0);// 
+
+
 
 	this.update = function (obj) {
 		guests = model.getNumberOfGuests();
-		populatePrintView(model,guests);
-	}
-	function populatePrintView(model, guests){
 		var menu = model.getFullMenu();
-		var container = document.getElementById("print_page");
+
+		container.html("");
+		container.append('<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4"> <button class="btn-default" type="button" id="goBackAndEditFromPrint"> Go back and edit dinner </button> </div> </div> </div>');
+
 		//Add banner to container element
-		container.innerHTML = '<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4"> <button class="btn-default" type="button" id="goBackAndEditFromPrint"> Go back and edit dinner </button> </div> </div> </div>';
 
-
-		var button = document.getElementById("goBackAndEditFromPrint");
-		button.onclick = backToSelectDish2;
 		for(var i = 0; i < menu.length; i++){
 
 			//Add a new row for each new dish
@@ -52,10 +51,12 @@ var Print = function (container, model){
 			dishSummary.append(prep);
 			container.append(dishSummary);
 
-	}
+		}
 
+	
 	}
-	function backToSelectDish2(){
+	
+	this.backToSelectDish2 = function (){
 		$('#print_page').hide();
 		$('#sideBarDiv').show();
 		$('#selectDish').show();

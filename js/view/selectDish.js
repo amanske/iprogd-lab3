@@ -65,8 +65,6 @@ var SelectDish = function (container, dinnermodel) {
     this.searchButton.id = "selectedDishSearchButton";
     searchButtonContainer.append(this.searchButton);
 
-    
-
 
     //COURSE MENU (container)
     var courseMenu = document.createElement("div");

@@ -5,7 +5,6 @@ var StartMessage = function (container) {
     welcomeBox.id = "welcomeBox";
     container.append(welcomeBox);
 
-
     var header1 = document.createElement("h1");
     header1.innerHTML = "A Home Dinner Service";
     welcomeBox.append(header1);
@@ -23,14 +22,13 @@ var StartMessage = function (container) {
     buttonInformation.innerHTML = "start quickly";
     welcomeBox.append(buttonInformation);
 
-    var startButton = document.createElement("button");
-    startButton.setAttribute("type", "button");
-    startButton.onclick = startDinnerPlanner;
-    startButton.className += " btn-default";
-    startButton.innerHTML = "Create new dinner";
-    welcomeBox.append(startButton);
+    this.startButton = document.createElement("button");
+    this.startButton.setAttribute("type", "button");
+    this.startButton.className += " btn-default";
+    this.startButton.innerHTML = "Create new dinner";
+    welcomeBox.append(this.startButton);
 
-	function startDinnerPlanner(){
+	this.startDinnerPlanner = function(){
 	    $('#mainStart').hide();
 	    $('body').css('background-image', 'none');
 	    $('#sideBarDiv').show();
