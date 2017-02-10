@@ -9,15 +9,21 @@ var Print = function (container, model){
 
 	model.addObserver(this);
 	var guests = model.getNumberOfGuests();
-
+	
+	this.button = document.createElement("button");
+	this.button.type = "button";
+	this.button.className = "btn-default";
+	this.button.id = "goBackAndEditFromPrint";
+	this.button.innerHTML = "Go back and edit dinner";
 
 	this.update = function (obj) {
 		guests = model.getNumberOfGuests();
 		var menu = model.getFullMenu();
 
 		container.html("");
-		container.append('<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4"> <button class="btn-default" type="button" id="goBackAndEditFromPrint"> Go back and edit dinner </button> </div> </div> </div>');
-		this.button = container.find("#goBackAndEditFromPrint").get(0); 
+		container.append('<div class="row" id="overview_banner"> <div class="col-md-4"> <h2>My Dinner: ' + guests + ' people </h2> </div> <div class="col-md-4"> </div> <div class="col-md-4" id="backButtonDiv"> </div> </div> </div>');
+		//this.button = container.find("#goBackAndEditFromPrint").get(0);
+		container.find("#backButtonDiv").append(this.button); 
 
 		//Add banner to container element
 

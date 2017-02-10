@@ -420,7 +420,7 @@ hr {
 	font-weight: bold;
 }
 
-#removeButton {
+.removeButton {
 	height: 20px;
 	line-height: 2px;
 	background-color: #dd1f28;

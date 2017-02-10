@@ -10,6 +10,24 @@ var SideBar = function (container,model) {
 	var main;
 	var dessert;
 
+	this.removeStarter = document.createElement("button");
+	this.removeStarter.type = "button";
+	this.removeStarter.innerHTML = "x";
+	this.removeStarter.className = "removeButton";
+	this.removeStarter.setAttribute('dishId', 0);
+
+	this.removeMain = document.createElement("button");
+	this.removeMain.type = "button";
+	this.removeMain.innerHTML = "x";
+	this.removeMain.className = "removeButton";
+	this.removeMain.setAttribute('dishId', 0);
+
+	this.removeDessert = document.createElement("button");
+	this.removeDessert.type = "button";
+	this.removeDessert.innerHTML = "x";
+	this.removeDessert.className = "removeButton";
+	this.removeDessert.setAttribute('dishId', 0);
+
 	var sideBar = document.createElement("div");
 	sideBar.className += " col-md-2 nav nav-pills nav-stacked";
 	sideBar.id = "sidebar";
@@ -132,6 +150,7 @@ var SideBar = function (container,model) {
 		main = model.getSelectedDish("main dish");
 		dessert = model.getSelectedDish("dessert");
 		var dishToShow = model.getDish(model.getDishToShow());
+
 		if(!(typeof(dishToShow) == 'undefined')){
 			totalPendingDishPrice = this.getTotalDishPrice(dishToShow, guests);
 		}
@@ -154,16 +173,8 @@ var SideBar = function (container,model) {
     		addRemoveDiv.className = "col col-md-1";
     		dishRow1.append(addRemoveDiv);
 
-    		var removeButton = document.createElement("button");
-    		removeButton.type = "button";
-    		removeButton.innerHTML = "x";
-    		removeButton.id = "removeButton";
-    		removeButton.onclick = function (e){
-    			model.removeDishFromMenu(starter.id);
-    			dishRow1.innerHTML = '';
-    		}
-
-    		addRemoveDiv.append(removeButton);
+    		this.removeStarter.setAttribute('dishId', starter.id);
+    		addRemoveDiv.append(this.removeStarter);
 
     		var addGuests = document.createElement("div");
     		addGuests.className = "col col-md-1";
@@ -188,16 +199,10 @@ var SideBar = function (container,model) {
     		addRemoveDiv.className = "col col-md-1";
     		dishRow2.append(addRemoveDiv);
 
-    		var removeButton = document.createElement("button");
-    		removeButton.type = "button";
-    		removeButton.innerHTML = "x";
-    		removeButton.id = "removeButton";
-    		removeButton.onclick = function (e){
-    			model.removeDishFromMenu(main.id);
-    			dishRow2.innerHTML = '';
-    		}
+    		this.removeMain.setAttribute('dishId', main.id);
 
-    		addRemoveDiv.append(removeButton);
+
+    		addRemoveDiv.append(this.removeMain);
 
     		var addGuests = document.createElement("div");
     		addGuests.className = "col col-md-1";
@@ -222,16 +227,9 @@ var SideBar = function (container,model) {
     		addRemoveDiv.className = "col col-md-1";
     		dishRow3.append(addRemoveDiv);
 
-    		var removeButton = document.createElement("button");
-    		removeButton.type = "button";
-    		removeButton.innerHTML = "x";
-    		removeButton.id = "removeButton";
-    		removeButton.onclick = function (e){
-    			model.removeDishFromMenu(dessert.id);
-    			dishRow3.innerHTML = '';
-    		}
+    		this.removeDessert.setAttribute('dishId', dessert.id);
 
-    		addRemoveDiv.append(removeButton);
+    		addRemoveDiv.append(this.removeDessert);
 
     		var addGuests = document.createElement("div");
     		addGuests.className = "col col-md-1";
@@ -275,6 +273,18 @@ var SideBar = function (container,model) {
 			price += ingredients[i].price;
 		}
 		return price * guests;
+	}
+
+	this.removeStarterDish = function () {
+		dishRow1.innerHTML = '';
+	}
+
+	this.removeMainDish = function () {
+		dishRow2.innerHTML = '';
+	}
+
+	this.removeDessertDish = function () {
+		dishRow3.innerHTML = '';
 	}
 }
 
